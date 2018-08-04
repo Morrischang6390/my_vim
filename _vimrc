@@ -14,6 +14,9 @@ hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
 " Make vim paste from system's clipboard
 set clipboard=unnamed
 
+" Fix del
+set backspace=indent,eol,start
+
 " Automatic Indentation
 filetype indent on
 
