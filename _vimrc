@@ -14,6 +14,9 @@ hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
 " Make vim paste from system's clipboard
 set clipboard=unnamed
 
+" Automatic Indentation
+filetype indent on
+
 " For ctags
 let Tlist_Ctags_Cmd = 'C:\ctags58\ctags.exe'
 set tags=tags;
