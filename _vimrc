@@ -11,6 +11,8 @@ color evening  " Same as :colorscheme evening
 hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
 hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
 
+" Make vim paste from system's clipboard
+set clipboard=unnamed
 
 " For ctags
 let Tlist_Ctags_Cmd = 'C:\ctags58\ctags.exe'
@@ -28,4 +30,31 @@ nmap <F10>  :TrinityToggleTagList<CR>
 
 " Open and close the NERD_tree.vim separately 
 nmap <F11>  :TrinityToggleNERDTree<CR> 
+
+" Key mapping
+map <space> /
+map <c-space> ?
+map <silent> <leader><cr> :noh<cr>
+
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove 
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+"Toggle paste mode on and off:
+map <leader>pp :setlocal paste!<cr>
+
+inoremap $1 ()<esc>i
+inoremap $2 []<esc>i
+inoremap $3 {}<esc>i
+inoremap $4 {<esc>o}<esc>O
+inoremap $q ''<esc>i
+inoremap $e ""<esc>i
+inoremap $t <><esc>i
+
+" Insert the current date and time (useful for timestamps):
+iab xdate <c-r>=strftime("%d/%m/%y %H:%M:%S")<cr>
 
