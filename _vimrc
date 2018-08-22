@@ -38,7 +38,7 @@ nmap <F10>  :TrinityToggleTagList<CR>
 nmap <F11>  :TrinityToggleNERDTree<CR> 
 
 " Key mapping
-map <space> /
+let mapleader = ","
 map <c-space> ?
 map <silent> <leader><cr> :noh<cr>
 
