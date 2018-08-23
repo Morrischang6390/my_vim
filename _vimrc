@@ -20,8 +20,15 @@ set clipboard=unnamed
 " Fix del
 set backspace=indent,eol,start
 
+" Fix command line pasting
+inoremap <C-R>+ <C-R><C-R>+
+
 " Automatic Indentation
 filetype indent on
+
+" For init
+" building help tags
+helptags $VIM\vimfiles\doc\
 
 " For ctags
 let Tlist_Ctags_Cmd = 'C:\ctags58\ctags.exe'
@@ -76,6 +83,7 @@ map <C-l> <C-W>l
 
 " Open ack.vim for fast search
 map <leader>g :Ack!<space>
+
 
 " Visual mode pressing * or # searches for the current selection
 " Super useful! From an idea by Michael Naumann
