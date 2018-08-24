@@ -7,7 +7,7 @@ set tabstop=4
 set shiftwidth=4
 set bg=dark
 set guifont=Lucida_Console:h13
-color yellow-moon  " Same as :colorscheme evening
+color perun  " Same as :colorscheme evening
 hi LineNr cterm=bold ctermfg=DarkGrey ctermbg=NONE
 hi CursorLineNr cterm=bold ctermfg=Green ctermbg=NONE
 
