@@ -35,17 +35,18 @@ let Tlist_Ctags_Cmd = 'C:\ctags58\ctags.exe'
 set tags=tags;
 set autochdir
 
-" Open and close all the three plugins on the same time 
-nmap <F8>   :TrinityToggleAll<CR> 
-
 " Open and close the srcexpl.vim separately 
-nmap <F9>   :TrinityToggleSourceExplorer<CR> 
+nmap <F9>   :SrcExplToggle<CR> 
+" // Do not let the Source Explorer update the tags file when opening          " 
+let g:SrcExpl_isUpdateTags = 0
 
 " Open and close the taglist.vim separately 
-nmap <F10>  :TrinityToggleTagList<CR> 
+nmap <F10>  :TlistToggle<CR> 
 
 " Open and close the NERD_tree.vim separately 
-nmap <F11>  :TrinityToggleNERDTree<CR> 
+nmap <F11>  :NERDTreeToggle<CR> 
+" Always open nerdtree on the right side
+let g:NERDTreeWinPos = "right"
 
 " Key mapping
 let mapleader = ","
