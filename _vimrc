@@ -114,3 +114,14 @@ function! VisualSelection(direction, extra_filter) range
     let @/ = l:pattern
     let @" = l:saved_reg
 endfunction
+
+" fold setting
+set foldenable              
+set foldmarker=#if,#endif
+set foldmethod=marker      
+set foldcolumn=0          
+setlocal foldlevel=1        
+set foldlevelstart=99    
+
+" toggle open/close fold
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
