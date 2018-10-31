@@ -3,6 +3,7 @@ source $VIMRUNTIME/vimrc_example.vim
 " Apperance
 set nu
 set cursorline
+set cursorcolumn
 set tabstop=4
 set shiftwidth=4
 set bg=dark
@@ -16,6 +17,9 @@ au GUIEnter * simalt ~x
 
 " Make vim paste from system's clipboard
 set clipboard=unnamed
+
+" Ignore case in searching
+set ic
 
 " Fix del
 set backspace=indent,eol,start
@@ -34,6 +38,40 @@ helptags $VIM\vimfiles\doc\
 let Tlist_Ctags_Cmd = 'C:\ctags58\ctags.exe'
 set tags=tags;
 set autochdir
+
+" For cscope
+" auto find cscope database and load (For windows)
+function LoadCscope()
+	if (executable("cscope") && has("cscope"))
+		let UpperPath = findfile("cscope.out", ".;")
+		if (!empty(UpperPath))
+			let path = strpart(UpperPath, 0, match(UpperPath, "cscope.out$") - 1)	
+			if (!empty(path))
+				let s:CurrentDir = getcwd()
+				let direct = strpart(s:CurrentDir, 0, 2) 
+				let s:FullPath = direct . path
+				let s:AFullPath = globpath(s:FullPath, "cscope.out")
+				let s:CscopeAddString = "cs add " . s:AFullPath . " " . s:FullPath 
+				execute s:CscopeAddString 
+			endif
+		endif
+	endif
+endfunction
+command LoadCscope call LoadCscope()
+LoadCscope
+
+set cscopetag
+set csto=0
+
+nmap zs :cs find s <C-R>=expand("<cword>")<CR><CR>
+nmap zg :cs find g <C-R>=expand("<cword>")<CR><CR>
+nmap zc :cs find c <C-R>=expand("<cword>")<CR><CR>
+nmap zt :cs find t <C-R>=expand("<cword>")<CR><CR>
+nmap ze :cs find e <C-R>=expand("<cword>")<CR><CR>
+nmap zf :cs find f <C-R>=expand("<cfile>")<CR><CR>
+nmap zi :cs find i ^<C-R>=expand("<cfile>")<CR>$<CR>
+nmap zd :cs find d <C-R>=expand("<cword>")<CR><CR
+
 
 " Open and close the srcexpl.vim separately 
 " nmap <F9>   :SrcExplToggle<CR> 
@@ -90,7 +128,7 @@ map <C-l> <C-W>l
 
 " Open ack.vim for fast search
 map <leader>g :Ack! --type=cc<space>
-map <leader><leader>g :AckWindow!<space>
+map <leader>h :AckWindow!<space>
 map <leader>v viw
 
 
@@ -99,7 +137,7 @@ map <leader>v viw
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 vnoremap <silent> <leader>g :<C-u>call VisualSelection('gv', '')<CR>
-vnoremap <silent> <leader><leader>g :<C-u>call VisualSelection('gvw', '')<CR>
+vnoremap <silent> <leader>h :<C-u>call VisualSelection('gvw', '')<CR>
 vnoremap <silent> <leader>r :<C-u>call VisualSelection('replace', '')<CR>
 
 
@@ -183,3 +221,4 @@ endfunction
 
 nmap <silent> <leader>l :call ToggleList("Location List", 'l')<CR>
 nmap <silent> <leader>e :call ToggleList("Quickfix List", 'c')<CR>
+
